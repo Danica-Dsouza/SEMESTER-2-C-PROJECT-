@@ -1,115 +1,128 @@
 # Community Help Desk and Resource Allocation System
-
-**A Console-Based Management System in C**
-
-This project is a comprehensive **Community Help Desk and Resource Allocation System** developed in **C** for managing humanitarian aid, charity, or community support operations.
-
----
-
-## 📋 Project Description
-
-A full-featured management system that helps NGOs, community centers, and relief organizations efficiently handle:
-
-- Beneficiaries (aid recipients)
-- Volunteers
-- Resource/Inventory
-- Resource Allocation & Distribution
-- Reports and Analytics
-
-**Course**: Programming in C (DBT7288)
+### C Version — project4.c
+**Course:** DBT7288 – Programming in C
+**Institution:** Symbiosis International University Dubai
 
 ---
 
-## ✨ Features
+## Overview
 
-### Core Modules
+A menu-driven console application written in C that manages a community aid organization's operations. It handles beneficiary registration, volunteer coordination, resource inventory, and resource allocation — with all data saved to and loaded from text files between sessions.
 
-- **Beneficiary Management**
-  - Add, View, Search, Edit, Delete beneficiaries
-  - Stores name, contact, address, family size, need category & priority
+---
 
-- **Volunteer Management**
-  - Manage volunteers with skills and availability status
+## Features
 
-- **Resource / Inventory Management**
-  - Track items (Food, Medicine, Clothing, etc.)
-  - Low stock alerts and reorder level management
-
-- **Resource Allocation**
-  - Allocate resources to beneficiaries
-  - Automatic stock deduction
-  - Records failed allocations due to insufficient stock
-
-- **Search System**
-  - Search beneficiaries and volunteers by ID
-  - Search resources by name or category (case-insensitive)
-
+- **Beneficiary Management** — Add, view, search, edit, and delete beneficiary records
+- **Volunteer Management** — Add, view, search, edit, and delete volunteer records
+- **Resource Inventory** — Add, view, search (by name or category), edit, and delete resource items
+- **Resource Allocation** — Allocate resources to beneficiaries with automatic stock deduction; records failed allocations when stock is insufficient
+- **Search Records** — Global search across beneficiaries (by ID), volunteers (by ID), and resources (by name/category keyword)
 - **Reports**
   - Stock Summary
   - Low Stock Alert
   - Beneficiaries Served
   - Pending / Failed Allocations
   - Volunteer Summary
-
-- **Data Persistence**
-  - Save & Load data from text files
-  - Data survives program restarts
+- **File Persistence** — Auto-saves on exit; loads existing data on startup
+- **Sample Data** — Option to seed 15+ demo records on first run
 
 ---
 
-## 🛠️ Technical Details
+## File Structure
 
-- **Language**: C (Standard C)
-- **Memory Management**: Dynamic arrays using `malloc()`, `realloc()`, and `free()`
-- **File Handling**: Persistent storage using `.txt` files
-- **No external libraries** – Pure C
-- **Input Validation** with user-friendly messages
-- **Modular Design** with clean code structure
-
----
-
-## 📁 Files
-
-- `project4.c` → Main source code
-- `beneficiaries.txt` → Beneficiary records
-- `volunteers.txt` → Volunteer records
-- `resources.txt` → Inventory data
-- `allocations.txt` → Allocation history
+```
+project4.c              # Main source file (all modules in one file)
+beneficiaries.txt       # Saved beneficiary records
+volunteers.txt          # Saved volunteer records
+resources.txt           # Saved resource records
+allocations.txt         # Saved allocation records
+```
 
 ---
 
-## 🚀 How to Compile and Run
+## Data Structures
 
-### 1. Compile
+| Struct | Fields |
+|---|---|
+| `Beneficiary` | ID, name, contact, address, need category, family size, priority level |
+| `Volunteer` | ID, name, phone, skill, availability |
+| `Resource` | Item ID, name, category, quantity available, reorder level |
+| `Allocation` | Allocation ID, beneficiary ID, item ID, requested qty, allocated qty, date |
+
+---
+
+## How to Compile and Run
+
+### Using GCC (Linux / macOS / WSL)
 ```bash
-gcc project4.c -o helpdesk
+gcc project4.c -o project4
+./project4
+```
 
-Sample Data Included
-The program comes with realistic sample data including:
+### Using GCC (Windows Command Prompt)
+```bash
+gcc project4.c -o project4.exe
+project4.exe
+```
 
-6 Beneficiaries
-4 Volunteers
-5 Resource items
-3 Allocation records
+### Using VS Code
+1. Open the folder containing `project4.c`
+2. Install the **C/C++ extension** by Microsoft
+3. Press `Ctrl+Shift+B` to build, then run via the terminal
 
+---
 
-Skills Demonstrated
+## How to Use
 
-Dynamic arrays with realloc()
-File I/O operations
-String manipulation and parsing
-Modular programming & code organization
-Data validation and error handling
-Menu-driven interface design
+1. On first launch, choose `1` to load sample data (15+ records)
+2. Navigate using the numbered main menu
+3. All sub-menus follow the same pattern — enter the number for your action
+4. Enter `0` in any sub-menu to go back
+5. Choose option `8` (Exit) to save and quit — data is also auto-saved on exit
 
+---
 
-Future Enhancements (Possible)
+## Key Concepts Used
 
-Export reports to CSV
-Search by multiple criteria
-Assignment of volunteers to beneficiaries
-Graphical User Interface (GUI) version
-Login system for admin/volunteer roles
+- Structs (`typedef struct`)
+- Dynamic memory allocation (`malloc`, `realloc`, `free`)
+- Pointer arithmetic and double pointers
+- File I/O (`fopen`, `fprintf`, `fscanf`, `fgets`, `fclose`)
+- Modular function design
+- Input validation with re-prompting loops
+- String handling (`strncpy`, `strcspn`, `strstr`, `tolower`)
+- Pipe-delimited file format with a count header per file
 
+---
 
-Made with ❤️ for community service management
+## File Format (pipe-delimited)
+
+Each file begins with a record count on the first line, followed by one record per line:
+
+```
+3
+1001|Aisha Al Mansoori|0501234567|Al Ain, Block 3|Food|4|1
+1002|Ravi Kumar|0559876543|Mussafah, Villa 7|Medicine|2|2
+1003|Sara Qasim|0523456789|Sharjah, Apt 12|Clothing|6|3
+```
+
+---
+
+## Known Limitations
+
+- No confirmation prompt before deleting a record
+- Search for beneficiaries and volunteers is by ID only (no name search)
+- `strncpy` does not guarantee null-termination if input exactly fills the buffer
+- `allocateResource()` uses `malloc + memcpy + free` instead of `realloc` (minor inconsistency)
+- No undo functionality
+
+---
+
+## Priority Levels
+
+| Level | Label |
+|---|---|
+| 1 | Urgent |
+| 2 | Normal |
+| 3 | Low |
