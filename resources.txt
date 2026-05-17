@@ -1,0 +1,6 @@
+5
+3001|Rice Bag 5kg|Food|25|10
+3002|Paracetamol|Medicine|190|50
+3003|School Bag|Education|30|5
+3004|Winter Jacket|Clothing|15|3
+3005|Baby Formula|Food|5|10

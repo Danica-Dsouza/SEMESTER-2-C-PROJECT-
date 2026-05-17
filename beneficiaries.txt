@@ -1,0 +1,7 @@
+6
+1001|Aisha Al Mansoori|0501234567|Al Ain, Block 3|Food|4|1
+1002|Ravi Kumar|0559876543|Mussafah, Villa 7|Medicine|2|2
+1003|Sara Qasim|0523456789|Sharjah, Apt 12|Clothing|6|3
+1004|John Doe|0561234000|Dubai, Flat 5|Books|3|1
+1005|Fatima Nasser|0589001234|Abu Dhabi, Tower 2|Food|5|2
+1006|Li Wei|0507654321|Ajman, Room 9|Medicine|1|3
